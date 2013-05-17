@@ -13,7 +13,7 @@ And Import Arduino libraries as explain: http://playground.arduino.cc/interfacin
 Stripboard
 ================
 
-![Stripboard](https://raw.github.com/TristanBrismontier/Processing-Arduino-SimpleController/master/AndroidProcessingControler(stripboard)_bb.png)
+![Stripboard](https://raw.github.com/TristanBrismontier/Processing-Arduino-SimpleController/master/AndroidProcessingControler.png)
 
 Contact
 =========
