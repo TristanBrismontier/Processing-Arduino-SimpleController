@@ -10,6 +10,8 @@ About
 You have to run Arduino, open the Examples > Firmata > StandardFirmata sketch, and upload it to the Arduino board.
 And Import Arduino libraries as explain: http://playground.arduino.cc/interfacing/processing
 
+Control the x position of the Rect with the Rotary Potentiometer, and change fill property with the PushButton. 
+
 Stripboard
 ================
 
