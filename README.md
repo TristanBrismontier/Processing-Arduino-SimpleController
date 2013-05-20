@@ -17,6 +17,7 @@ Stripboard
 
 ![Stripboard](https://raw.github.com/TristanBrismontier/Processing-Arduino-SimpleController/master/AndroidProcessingControler.png)
 
+image developed using [Fritzing](http://fritzing.org/). For more circuit examples, see the [Fritzing project page](http://fritzing.org/projects/)
 Contact
 =========
 Developed by Tristan Brismontier
