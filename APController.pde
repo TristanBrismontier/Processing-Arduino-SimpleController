@@ -22,7 +22,7 @@
     int pushButtonValue = arduino.digitalRead(pushButtonPin);
     
     if(pushButtonValue < 1){
-    fill(255);
+      fill(255);
     }else{
       fill(0);
     }
