@@ -1,48 +1,72 @@
-  import processing.serial.*;
-  import cc.arduino.*;
+  import processing.serial.*;  
   
-  Arduino arduino;
-  int analogPinX = 0;
-  int analogPinY = 1;
-  int servoPin = 10;
-  int pushButtonPin = 2;
-  int maxAnalogPinValue = 1023;
-  int rectWidth = 1;
-  float x= 0;
-  float y= 0;
-  
-  
+  Serial port;
+  int nbStep = 10;
+  boolean xp, xn, yp, yn =false;
   
   void setup()
   {
     size(1024,1024);
-    println(Arduino.list());
-    arduino = new Arduino(this, Arduino.list()[0], 57600);
-    arduino.pinMode(pushButtonPin, Arduino.INPUT);
-    arduino.pinMode(servoPin, Arduino.OUTPUT);
+   size(360, 360);
+  frameRate(100);
+  println(Serial.list()); // List COM-ports
+  //select second com-port from the list (COM3 for my device)
+  // You will want to change the [1] to select the correct device
+  // Remember the list starts at [0] for the first option.
+  port = new Serial(this, Serial.list()[0], 9600);
   }
   
   void draw()
   {
-    
-    int sensorValueX = arduino.analogRead(analogPinX);
-    int sensorValueY = arduino.analogRead(analogPinY);
-    int pushButtonValue = arduino.digitalRead(pushButtonPin);
-    int angle = (int) (180 * (float) ((float)sensorValueX/maxAnalogPinValue));
-   println(angle);
-    arduino.analogWrite(servoPin,angle);  
-    if(pushButtonValue < 1){
-      stroke(0);
-    }else{
-       background(209);  
+   
+   if(xp)port.write(nbStep+"q");
+   if(xn)port.write(nbStep+"d");
+   if(yp)port.write(nbStep+"z");
+   if(yn)port.write(nbStep+"s");
+  }
+  
+  void keyPressed(){
+    if(keyCode==RIGHT)
+    {
+     xn =true;
+     xp =false;
     }
-    
-     float newX = (width-rectWidth) * (float) ((float)sensorValueX/maxAnalogPinValue);
-     float newY = (height-rectWidth) * (float) ((float)sensorValueY/maxAnalogPinValue);
-    if(frameCount > 10){
-      line(x,y,newX,newY);
+    if(keyCode==LEFT)
+    {
+      xp =true;
+      xn =false;
     }
-    x= newX;
-    y= newY;
-     rect(x,y,rectWidth,rectWidth);
+    if(keyCode==UP)
+    {
+        yp =true;
+        yn =false;
+     }
+    if(keyCode==DOWN)
+    {
+      yn =true;
+      yp =false;
+    }
+  }
+    
+  void keyReleased()
+  {
+     if(keyCode==RIGHT)
+    {
+     xn =false;
+    }
+    if(keyCode==LEFT)
+    {
+      xp =false;
+    }
+    if(keyCode==UP)
+    {
+      yp =false;
+     }
+    if(keyCode==DOWN)
+    {
+      yn =false;
+    }
+  }
+    
+    
   }
